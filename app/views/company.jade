@@ -1,0 +1,183 @@
+if admin || company.accept==1
+  doctype html
+  html(lang='en')
+    //подключение header
+    include includes/head 
+
+    body
+      .wrapper
+        .navigation
+          nav.navbar.navbar-default.navbar-fixed-top
+            .container
+              // Brand and toggle get grouped for better mobile display
+              //- p.nav-description Национальный реестр интегрированных отчетов
+              .navbar-header
+                button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+                  span.sr-only Toggle navigation
+                  span.icon-bar
+                  span.icon-bar
+                  span.icon-bar
+
+                a.navbar-brand(href='http://da-strateg.ru', target='_blank')
+                  img(src='/img/da-strateg-logo.png', alt='logo1')
+
+              // Collect the nav links, forms, and other content for toggling
+              #bs-example-navbar-collapse-1.collapse.navbar-collapse
+                ul.nav.navbar-nav.pull-right
+                  li
+                    a(href='/main') Главная
+                  li.active
+                    a(href='/search') Поиск
+                  li
+                    a(href='/stats') Интерактивная статистика
+                  li
+                    a(href='/register-company') Регистрация компании
+                  li
+                    a(href='/register-report') Регистрация отчета
+              // /.navbar-collapse
+            // /.container-fluid
+        // /container navigation
+
+        .space-for-fixed-top
+
+        main.container
+          .row
+            .col-md-10.col-md-offset-2.col-xs-12.col-sm-12.profile-company
+              h2 #{company.name}
+              .row
+                .col-md-2.col-xs-12.col-sm-6.company-logo
+                  img(src='#{company.logo}', alt='logo')
+                .col-md-10.col-xs-12.col-sm-12.company-info
+                  table.table.table-hover
+                    tbody
+                      tr
+                        td  Сокращенное название
+                        td  #{company.short_name}
+                      tr
+                        td  Организационно-правовая форма
+                        td  #{company.opf}
+                      tr
+                        td  Описание компании
+                        td
+                          | #{company.info}
+              // /row
+              .row
+                .col-md-6.col-xs-12.col-sm-6
+                  table.table.table-hover
+                    tbody
+                      tr
+                        td  Отрасль экономики
+                        td  #{company.sector}
+                      tr
+                        td  Расположение головного офиса
+                        td  #{company.city}
+                      tr
+                        td  Размер компании 
+                        td
+                          span(title='Малая: Оборот до 800 млн рублей, количество сотрудников до 100 человек. Средняя: до 2 млрд рублей, количество сотрудников до 250 человек. Крупная: Оборот свыше 2 млрд рублей, количество сотрудников свыше 250 человек')
+                            | #{company.size_of_company}
+                      tr
+                        td Количество сотрудников
+                        td
+                          | #{company.employees}
+                      tr
+                        td Годовой доход (млн руб)
+                        td
+                          | #{company.revenue}
+                      tr
+                        td  Листинг (биржа)
+                        // сделать проверку на наличие
+                        td  #{company.listing}
+                      tr
+                        td  Форма собственности
+                        td  #{company.type_of_ownership}
+                .col-md-6.col-xs-12.col-sm-6
+                  table.table.table-hover
+                    tbody
+                      tr
+                        td  Ф.И.О. директора компании
+                        td  #{company.CEO}
+                      tr
+                        td  Адрес головного офиса
+                        td  #{company.adress}
+                      tr
+                        td  Телефон приемной
+                        td  #{company.comp_phone}
+                      tr
+                        td  Факс приемной
+                        td  #{company.comp_fax}
+                      tr
+                        td  Адрес электронной почты
+                        td  #{company.comp_email}
+                      tr
+                        td  Сайт
+                        td
+                          a(href='#{company.link}', target='_blank') #{company.link}
+              - var page_reports = reports 
+              .row
+                h3 Список отчетов компании
+                .col-md-10.col-md-offset-2.col-xs-12.col-sm-6.other-reports
+                  for report in reports
+                    if report.accept == 1
+                      .cover
+                        a(href='/report/#{report._id}', target='_blank', title='#{report.name}')
+                          img(src=report.preview, alt='')
+              .row
+                if admin
+                  br
+                  p(style="color:brown;font-size:16pt") 
+                    b
+                      |Это видит только администратор
+                  form(method='post', action='/company/correct/single/#{company._id}')
+                    button.btn.btn-default.green-btn(type='submit')
+                      | Редактировать содержание
+                    br
+                    br
+                  span
+                    b
+                      | Текущий статус: 
+                  if (company.accept==0)
+                    span(style="color:blue;font-size:14pt")
+                      | Непроверен
+                  if (company.accept==1)
+                    span(style="color:green;font-sisearchze:14pt")
+                      | Проверен
+                  if (company.accept==2)
+                    span(style="color:red;font-size:14pt")
+                      | Отклонен
+                  br
+                  form(method='post', action='/company/accept/single/#{company._id}')
+                    label.radio-inline 
+                      input(name='accept', value='7', type='radio', checked='')
+                      | Не менять статус
+                    br
+                    label.radio-inline
+                      input(name='accept', value='0', type='radio')
+                      | Непроверен
+                    br
+                    label.radio-inline
+                      input(name='accept', value='1', type='radio')
+                      | Проверен
+                    br
+                    label.radio-inline
+                      input(name='accept', value='2', type='radio')
+                      | Отклонен
+                    br
+                    br
+                    button.btn.btn-default.green-btn(type='submit')
+                      | Сохранить
+                // /other-reports
+              // /row
+            // /profile-report
+          // /row
+        .space
+        .space
+          
+        //подключение footer
+        include includes/footer
+
+        // Slider
+        script(src='/js/slides.min.jquery.js')
+        script(src='/js/elements.js')
+else
+  | Компания не прошел проверку администрации

@@ -1,0 +1,274 @@
+if admin || report.accept==1
+  doctype html
+  html(lang='en')
+
+    //подключение header
+    include includes/head 
+
+    body
+      .wrapper
+        .navigation
+          nav.navbar.navbar-default.navbar-fixed-top 
+            .container
+              // Brand and toggle get grouped for better mobile display
+              //- p.nav-description Национальный реестр интегрированных отчетов
+              .navbar-header
+                button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+                  span.sr-only Toggle navigation
+                  span.icon-bar
+                  span.icon-bar
+                  span.icon-bar
+
+                a.navbar-brand(href='http://da-strateg.ru', target='_blank')
+                  img(src='/img/da-strateg-logo.png', alt='logo1')
+              // Collect the nav links, forms, and other content for toggling
+              #bs-example-navbar-collapse-1.collapse.navbar-collapse
+                ul.nav.navbar-nav.pull-right
+                  li
+                    a(href='/main') Главная
+                  li.active
+                    a(href='/search') Поиск
+                  li
+                    a(href='/stats') Интерактивная статистика
+                  li
+                    a(href='/register-company') Регистрация компании
+                  li
+                    a(href='/register-report') Регистрация отчета
+              // /.navbar-collapse
+            // /.container-fluid
+        // /container navigation
+        .space-for-fixed-top
+        main.container
+          .row
+            .col-md-10.col-md-offset-2.col-xs-12.col-sm-12.profile-report
+              h2
+                | #{report.name}
+              .row
+                .col-md-3.col-xs-6.col-sm-6.cover-and-isBest
+                  img(src='#{report.preview}', alt='')
+                .col-md-7.col-xs-12.col-sm-12.report-info
+                  table.table.table-hover
+                    tbody
+                      tr
+                        td Компания
+                        td 
+                          a(href='/company/#{report.company_id}') #{report.company}
+                      tr
+                        td Отчетный год
+                        td #{report.year}
+                      tr
+                        td Отрасль экономики
+                        td 
+                          | #{report.sector}
+                      tr
+                        td Наличие стандартов
+                        td 
+                          for val in report.standarts
+                            | #{val}
+                            br
+                      if (report.RRS != undefined)
+                        tr
+                          td  Рейтинг прозрачности РРС
+                          td 
+                            a(href='#{report.RRSlink}') #{report.RRS}
+                      tr
+                        td  Наличие в отчете бизнес-модели 
+                        td  
+                          if report.BusinessModel == true
+                            i.fa.fa-check(aria-hidden='true')
+                          else
+                            i.fa.fa-close(aria-hidden='true') 
+                      tr
+                        td  Наличие в отчете информации о стратегии 
+                        td 
+                          if report.Strategy == true
+                            i.fa.fa-check(aria-hidden='true')
+                          else
+                            i.fa.fa-close(aria-hidden='true') 
+                      tr
+                        td  Наличие в отчете информации об управлении рисками
+                        td  
+                          if report.RiskMap == true
+                            i.fa.fa-check(aria-hidden='true')
+                          else
+                            i.fa.fa-close(aria-hidden='true') 
+                      tr
+                        td   
+                            | Экспертное заверение отчета
+                        td  
+                          if report.Assurance == true
+                            i.fa.fa-check(aria-hidden='true')
+                          else
+                            i.fa.fa-close(aria-hidden='true')
+                      tr
+                        td   
+                            | Заверение отчета заинтересованными сторонами
+                        td  
+                          if report.AssuranceZS == true
+                            i.fa.fa-check(aria-hidden='true')
+                          else
+                            i.fa.fa-close(aria-hidden='true')
+                        
+                      //tr
+                        td  Наличие Панели/комиссии заинтересованных сторон
+                        td  
+                          if report.Stakes == true
+                            i.fa.fa-check(aria-hidden='true')
+                          else
+                            i.fa.fa-close(aria-hidden='true') 
+                      tr
+                        td Проведение диалогов с заинтересованными сторонами при подготовке отчета
+                        td
+                          if report.ZS == true
+                            i.fa.fa-check(aria-hidden='true')
+                          else
+                            i.fa.fa-close(aria-hidden='true') 
+                        
+                      if (report.Best != 0)
+                        tr
+                          td  
+                            if report.RRSlink!=undefined
+                              a(href='#{report.RRSlink}') Является лучшей практикой исследовании РРС корпоративной прозрачности российских компаний
+                            else
+                              | Является лучшей практикой исследовании РРС корпоративной прозрачности российских компаний
+                          td
+                            for val in report.Best
+                              | #{val}
+                              br
+                      if (report.wins != undefined)
+                        tr
+                          td  Победы в российских конкурсах отчетности 
+                          td  #{report.wins}
+                      if (report.world_wins != undefined)
+                        tr
+                          td  Победы в международных конкурсах отчетности 
+                          td  #{report.world_wins}
+                      tr
+                        td  Компания-консультант
+                        td
+                          if (report.consultant!='')  
+                            | #{report.consultant}
+                          else
+                            | Нет информации
+                      //if (report.manager != undefined)
+                        tr
+                          td  Ответственный за подготовку отчета
+                          td  {report.manager}
+                      tr
+                        td  Дизайн отчета
+                        td  
+                          if (report.designer!='')
+                            | #{report.designer}
+                          else
+                            | Нет информации 
+                      tr
+                        td  Аудитор нефинансовой информации отчета
+                        td  
+                          if (report.auditor!='')
+                            | #{report.auditor}
+                          else
+                            | Нет информации
+                      tr
+                        td  Финансовый аудитор отчета
+                        td  
+                          if (report.fin_auditor!='')
+                            | #{report.fin_auditor}
+                          else
+                            | Нет информации
+                .col-md-2.col-xs-12.col-sm-12.report-buttons
+                  button.btn.btn-default.green-btn(type='submit')
+                    i.fa.fa-download(aria-hidden='true')
+                    a(href='#{report.doc_rus}')  Скачать отчет (RU)
+                  if (report.doc_en!=undefined)
+                    br
+                    button.btn.btn-default.green-btn(type='submit')
+                      i.fa.fa-download(aria-hidden='true')
+                      a(href='#{report.doc_en}')  Скачать отчет (ENG)
+                  br
+                  if (report.interactive!=undefined && report.interactive.length!=0)
+                    button.btn.btn-default.green-btn(type='submit')
+                      a(href='#{report.interactive}', target='_blank', title='Перейти к интерактивной версии') Интерактивная версия
+                    br
+              // /row
+              // убрать из массива текущий отчет
+              .row
+                h3 Другие отчеты компании
+                .col-md-10.col-md-offset-2.col-xs-6.col-sm-6.other-reports
+                  for rep in reports
+                    if rep.accept == 1
+                      .cover
+                        a(href='/report/#{rep._id}', target='_blank', title='#{rep.name}')
+                          img(src='#{rep.preview}', alt='')
+              .row
+                if admin
+                  br
+                  p(style="color:brown;font-size:16pt") 
+                    b
+                      |Это видит только администратор
+                  form(method='post', action='/report/correct/single/#{report._id}')
+                    button.btn.btn-default.green-btn(type='submit')
+                      | Редактировать содержание
+                    br
+                    br
+                  span
+                    b
+                      | Текущий статус: 
+                  if (report.accept==0)
+                    span(style="color:blue;font-size:14pt")
+                      | Непроверен
+                  if (report.accept==1)
+                    span(style="color:green;font-size:14pt")
+                      | Проверен
+                  if (report.accept==2)
+                    span(style="color:red;font-size:14pt")
+                      | Отклонен
+                  br
+                  br
+                  form(method='post', action='/report/accept/single/#{report._id}')
+                    label.radio-inline 
+                      input(name='accept', value='7', type='radio', checked='')
+                      | Не менять статус
+                    br
+                    label.radio-inline
+                      input(name='accept', value='0', type='radio')
+                      | Непроверен
+                    br
+                    label.radio-inline
+                      input(name='accept', value='1', type='radio')
+                      | Проверен
+                    br
+                    label.radio-inline
+                      input(name='accept', value='2', type='radio')
+                      | Отклонен
+                    br
+                    br
+                    strong Рейтинг RRS
+                      br
+                      input(name='RRS_correct', type='text', placeholder='Рейтинг')
+                    br
+                    br
+                    strong Ссылка на RRS
+                      br
+                      input(name='RRSlink_correct', type='text', placeholder='ссылка')
+                    br
+                    br
+                    strong Лучшая практика
+                      br
+                      for val in best
+                        input(type='checkbox', value='#{val}', name='#{val}')
+                        |  #{val}
+                        br
+                      br
+                    button.btn.btn-default.green-btn(type='submit')
+                      | Сохранить
+                // /other-reports
+              // /row
+            // /profile-report
+          // /row
+        .space
+        .space
+
+        //подключение footer
+        include includes/footer
+else
+  | Отчет не прошел проверку администрации

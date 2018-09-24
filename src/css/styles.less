@@ -1,0 +1,871 @@
+ * {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow-x: hidden !important;
+}
+select2{
+  width: 75%;
+}
+ /* Fonts */
+/* font-family: "PTSansRegular"; */
+@font-face {
+    font-family: "PTSansRegular";
+    src: url("../fonts/PTSansRegular/PTSansRegular.eot");
+    src: url("../fonts/PTSansRegular/PTSansRegular.eot?#iefix")format("embedded-opentype"),
+    url("../fonts/PTSansRegular/PTSansRegular.woff") format("woff"),
+    url("../fonts/PTSansRegular/PTSansRegular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+/* font-family: "PTSansItalic"; */
+@font-face {
+    font-family: "../PTSansItalic";
+    src: url("../fonts/PTSansItalic/PTSansItalic.eot");
+    src: url("../fonts/PTSansItalic/PTSansItalic.eot?#iefix")format("embedded-opentype"),
+    url("../fonts/PTSansItalic/PTSansItalic.woff") format("woff"),
+    url("../fonts/PTSansItalic/PTSansItalic.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+/* font-family: "PTSansBold"; */
+@font-face {
+    font-family: "PTSansBold";
+    src: url("../fonts/PTSansBold/PTSansBold.eot");
+    src: url("../fonts/PTSansBold/PTSansBold.eot?#iefix")format("embedded-opentype"),
+    url("../fonts/PTSansBold/PTSansBold.woff") format("woff"),
+    url("../fonts/PTSansBold/PTSansBold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+/* Variables */
+
+/* Colors */
+@white: #fff;
+@black: #000;
+@red: #9b322a;
+@gray: #ccc;
+@dark-gray: #a6a8aa;
+@sea-green: #336666;
+@new-white: #f6f6f6;
+@new-gray: #a6a5a5;
+@light-blue: #0084c9;
+/* /Colors*/
+/* /Variables */
+
+body {
+  background-color: @new-white;
+  color: @black;
+  font-family: 'PTSansRegular','Helvetica','Arial', sans-serif;
+  overflow-x: hidden !important; //от белой полосы
+  min-height: 700px;
+}
+h1, h2, h3, p {
+  color: @black;
+}
+h1 {
+  font-size: 20px;
+  .uppercase;
+  .bold;
+  .red;
+}
+h2 {
+  font-size: 18px;
+  .bold;
+  .red;
+}
+h3 {
+  .bold;
+  font-size: 16px;
+  .sea-green;
+}
+
+p {
+  font-size: 14px;
+}
+
+main {
+  min-height: 700px;
+}
+
+/* for text */
+.uppercase {
+  text-transform: uppercase;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.no-underline {
+  text-decoration: none;
+}
+.bold {
+  font-weight: bold;
+}
+.center {
+  text-align: center;
+}
+.justify {
+  text-align: justify;
+}
+.right {
+  text-align: right;
+}
+.left {
+  margin-right: auto;
+  margin-left: 0;
+  text-align: left;
+}
+.black {
+  color: @black;
+}
+/* /for text */
+
+
+/* elements */
+//green-btn
+.green-btn {
+  background-color: @sea-green;
+  color: @white;
+  a {
+    color: @white;
+  }
+
+}
+.green-btn:hover {
+  background-color: lighten(@sea-green,10);
+  color: @white !important;
+    a {
+    .no-underline;
+  }
+}
+  .green-btn:active {
+  background-color: darken(@sea-green,20);
+}
+
+//red-btn
+.red-btn {
+  background-color: @red;
+  color: @black;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-color: @red;
+  a {
+    color: @black;
+  }
+
+}
+.red-btn:hover {
+  background-color: lighten(@red,10);
+  color: @white !important;
+  border-color: @red;
+    a {
+    .no-underline;
+  }
+}
+  .red-btn:active {
+  background-color: darken(@red,20);
+}
+
+.red {
+  color: @red;
+}
+
+.sea-green {
+  color: @sea-green;
+}
+
+@normal-margin-top: 20px;
+.space {
+  margin-top: @normal-margin-top;
+}
+.space2 {
+  margin-top: @normal-margin-top*3;
+}
+.space-for-fixed-top {
+  margin-top: @normal-margin-top*4;
+}
+.simple-border {
+  border: 1px solid @dark-gray;
+}
+/* /elements */
+
+
+/* Navbar */
+  .navbar {
+    background: @new-white;
+    margin-bottom: 0;
+}
+  .navbar-brand{
+    padding: 0;
+    margin: 10px;
+    
+    img {
+      width: 230px;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+   .navbar-brand{
+    img {
+      width: 35%;
+    }
+}
+}
+
+
+.navbar-default {
+
+  .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+    color: @white; //активная кнопка
+    background-color: @new-gray;
+}
+
+  .navbar-nav {
+    li {
+      a {
+        color: @black; //цвет текста ссылок
+        .uppercase;
+        font-weight: 600;
+        letter-spacing: 1px;
+        padding: 2px 4px;
+        margin: 27px 5px;        
+      }      
+
+      a:hover {
+        color: @white; //цвет текста ссылок
+        background-color: @new-gray;    
+        .underline; 
+      }
+    }
+  }
+} /* /.navbar-default */
+
+.nav-description {
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+/* /Navbar */
+
+/* Jumbotron */
+.jumbotron 
+{
+  padding-top: 0px;
+  padding-bottom: 0px;
+  .jumbo-with-page 
+  {
+    background: url(../img/top.jpg) no-repeat top center;
+    height: 250px;
+    .caption {
+      font-size: 35px;
+      color: @white;
+      padding-top: 40px;
+    }
+
+    .red-btn {
+      margin-top: 20px;
+    }
+
+  }
+}
+/* /Jumbotron */
+
+// @media screen and (min-width: 768px) {
+//   .jumbotron {
+//     padding-top: 8%;
+//     padding-bottom: 7%;
+//   }
+    
+// }
+
+
+/* ---Page Main---*/
+.container-for-slider {
+  width: 90%;
+}
+
+// @cover-h: 220px; //высота обложки
+@cover-h: 150px; 
+    #slick-slider
+    {
+           img 
+           {
+              height: @cover-h;
+              width: @cover-h/sqrt(2); //соотношение сторон листа А4
+           }
+
+    }
+
+        .slick-next {
+           background-image: url(../img/Forward-gray.png);
+
+        }
+       .slick-prev {
+           background-image: url(../img/Backward-gray.png);
+        }   
+
+ /*  /#slick-slider */
+    
+
+  .mainpage {
+  
+    
+    .cap-bg {
+      color: @white; //активная кнопка
+      background-color: @new-gray;
+      .uppercase;
+      padding: 2px 4px;
+      font-size: 18px;
+    }
+
+
+    .description-and-news {
+      background-color: @new-white;
+      margin-top: 50px;
+      
+      .news-caption {
+        // background-color: @red;
+        color: @black;
+        .bold;
+        .left;
+        font-size: 20px;
+      }      
+      
+      .mainpage-news {
+        background-color: @new-gray;
+        .new {
+          h3 {
+            .uppercase;
+            color: @white;
+            font-weight: 200; //чтобы убрать bold
+            font-size: 16px;
+          }
+
+          p {
+            color: @red; //дата
+          }
+
+         }
+      }
+
+
+
+
+
+      .mainpage-description{
+
+        .definition {
+          padding: 1%;
+          background: #EEE;
+          border-radius: 10px;
+          span {
+            font-size:9pt;
+            text-align:left
+          }
+
+          img {
+            float: left;
+            padding: 15px;
+          }
+
+        }
+
+
+        p {
+          font-size: 10pt;
+          text-align: left;
+          margin-top: 20px;
+       }
+      }
+    } /* /.description-and-news*/
+    
+
+  } 
+
+.best { //лучшие практики
+  .items {
+
+    margin-top: 20px;
+
+    .item {
+      font-size: 1.5em;
+      a {
+        .uppercase;
+        .black;
+        .bold;
+      }
+
+      img {
+        padding: 5px 15px 5px 0;
+
+      }
+    }
+
+  }
+
+
+  .partners {
+    .info {
+      p {
+        color: @light-blue;
+        font-size: 15px;
+      }
+    }
+    
+    img {
+      width: 120px;
+      margin: 20px;
+    }
+
+    div {
+      display: inline-block;
+    }
+
+    }
+}
+
+
+
+/* /---Page Main---*/
+
+/* Footer */
+footer {
+  .contacts {
+    padding: 15px 0;
+  }
+  background-color: @dark-gray;
+  height: 112px;
+  .address, .feedback, .social  {
+    i {
+      color: @red;
+      padding: 5px 10px;
+    }
+    a {
+      color: @black;
+    }
+
+    a:hover {
+    // .no-underline;
+    color: @white;
+    }
+
+    span {
+      font-size: 14px;
+      margin: 3px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+  height: 112px*1.3;
+}
+
+
+}
+
+
+
+
+
+
+/* /Footer */
+
+/* ---Page Search--- */
+/* search-panel*/
+.search-panel {
+  background-color: @gray;
+  
+  .nav-tabs {
+    background-color: @red;
+    
+    li.active {
+      a {
+         background-color: @gray;
+         color: @red;
+      }
+    }    
+    li {
+      a {
+         color: @white;
+      }
+    }
+  }
+
+  .nav>li>a:hover {
+    .no-underline;
+    background-color: @gray;
+}
+
+.tab-content {
+  .btn {
+    margin: 5px 5px;
+  } 
+}
+
+   select {
+     margin: 5px 0;
+   }
+ 
+
+}
+/* /search-panel*/
+
+ .hidden {
+      display: none;  //скрыть блок
+ }
+
+
+
+/* search-results */
+
+.search-results-report {
+  .hidden;
+}
+
+.search-results-organization {
+  .hidden;
+}
+
+
+.search-results-report, .search-results-organization {
+
+  .sort, .change-view {
+    .bold;
+    a {
+      color: @black;
+      .no-underline;
+    }
+
+     a:active { //выбран тип сортировки/тип вида - сделать ссылку красной
+          .red;
+        }
+  }
+
+  .change-view {
+    .var-view {
+      a {
+       color: darken(@dark-gray, 10%);
+      }
+
+      a:active { //выбран тип сортировки/тип вида - сделать ссылку красной
+          .red;
+        }
+    }
+  }
+
+
+  .sort {
+    .var-sort {
+      .simple-border; 
+      padding: 5px;
+      span {
+        margin: 5px;
+      }
+    }
+  } /* /sort */
+
+  .change-view {
+    margin: 10px 0;
+    .var-view {
+      .simple-border; 
+      padding: 5px;
+      div {
+         display: inline-block;
+         padding: 5px;
+      }
+     
+    }
+  }/* /change-view */
+  
+  .view {
+
+    .list {  
+      .hidden;
+      .element { 
+        background-color: @gray;
+        padding: 5px;
+        margin: 10px 0;
+        .bold;
+        img {
+          width: 50px;
+        }
+      }
+    }
+
+    .table {
+      // .hidden; //изначально вывод в виде таблицы
+      table {
+        a {
+          .bold;
+        }
+      }
+    }
+
+    .icon {
+      .hidden;
+      .element {
+        display: inline-block;
+        img {
+          .simple-border;
+          height: 80px;
+          margin: 5px 5px 10px;
+        }
+
+      }
+    }    
+
+    .big-icon {
+      .hidden;
+        .element {
+        display: inline-block;
+        img {
+          .simple-border;
+          height: 200px;
+          margin: 5px 5px 10px;
+        }
+
+      }
+    }
+
+
+  } /* /view */
+}/* /search-results */
+
+/* /---Page Search--- */
+
+/* --- Page Profile Report-- */
+  .profile-report {
+    .cover-and-isBest {
+        img {
+          width: 150px;
+          .simple-border;
+        }
+
+          .isBest {
+        .red;
+        }
+
+      }
+
+      .report-info {
+         .fa-close {
+           .red;
+         }         
+
+         .fa-check {
+           .sea-green;
+         }
+      }
+
+
+      .report-buttons {
+        button {
+          margin: 5px;
+        } 
+      }
+}
+/* /---Page Profile Report-- */
+
+  .profile-report, .profile-company {
+    .buttons { 
+        button
+        {
+          margin: 10px;
+        }
+    }
+    .other-reports {
+          .cover {
+            display: inline-block;
+            img {
+              height: 100px;
+              margin: 5px;
+              .simple-border;
+            }
+          }
+        }
+  }
+
+/* --- Page Profile Company-- */
+  .profile-company {
+    .company-logo {
+      img {
+        width: 150px;
+      }
+    }
+  }
+
+
+
+
+/* ---/ Page Profile Company-- */
+
+/* ---Page Register-- */
+//Анкета регистрации профиля организации  
+
+.success-download span{
+  display: none;
+}
+
+
+.upload {
+  div {
+    display: inline-block;
+  }
+} 
+.upload, .upload_cover, .upload_ru_pdf, .upload_en_pdf, .submit {
+  input { //если не применить, будет дефолтная кнопка "Выберите файл"
+    opacity: 0; 
+    z-index: -1;
+  }
+
+}
+
+#submit-reg-company { //если не применить, будет дефолтная кнопка "submit"
+    opacity: 0; 
+    z-index: -1;
+}
+
+.btn-reg-company, .btn-reg-report {
+  margin-bottom: 10px;
+  margin-right: 20px;
+
+}
+  .register-company, .register-report {    
+    @input-width: 220px; 
+
+    .change-w{
+          width: @input-width; //ширина поля input
+          margin-left: 10px;
+        }
+
+    .change-w-number {
+      .change-w;
+      width: @input-width/3; //ширина поля input
+    }
+
+    .register-left, .register-right {
+      margin-right: 15px; 
+      div {
+        padding-top: 0;
+        padding-bottom: 10px;
+        .right;  
+            
+      }
+
+    }    
+
+  } 
+
+//  register-report. Правка стилей для интерактивного поиска
+  .register-report .livesearch div{
+    text-align: left;
+}  
+  .search.livesearch div{
+    text-align: left;
+}  
+
+.selectize-control.single .selectize-input:after {
+    border-color: @black transparent transparent transparent;
+}
+
+.selectize-control.single .selectize-input, .selectize-dropdown.single {
+    border-color: @dark-gray;
+    padding: 5px;
+}
+
+ .selectize-input {
+     // color: @black; //не работает
+  } 
+
+.short-w { //укороченный input для года
+  .selectize-input { //поле ввода
+    width: 45%;
+    margin-left: 55%;
+  } 
+
+  .selectize-control > .selectize-dropdown { //варианты выпадающего списка
+    width: 45%;
+    margin-left: 55%;
+  }
+}
+
+.w-live-select {
+  width: 90%;
+}
+
+
+
+//  /правка стилей для интерактивного поиска
+
+  
+  .edit_form  input[type=checkbox]{margin-left:-5px;width: 20px; border: gray 1px solid;}
+
+  .edit_form h1{
+    padding:0;
+    margin:0px 0px 10px 0px;
+    font-family:Trebuchet MS;
+    font-size:1.3em;
+    font-weight:normal;
+  }
+
+   .edit_form table span{
+   color:red;
+   }
+   
+   .send input{
+  
+   padding:5px;
+   margin-top:10px;
+   width:150px;
+   }
+   #messenger-company, #messenger-report{
+    width: 330px; 
+    margin:5px 0px; 
+    padding: 5px;
+    border: gray dashed 1px;
+    background: pink; 
+    display: none;   
+  }
+
+
+
+//Анкета регистрации профиля организации
+  .register-report {
+
+  } /* /.register-report */
+/* /---Page Register--- */
+
+/* ---Page Stats--- */
+
+.stats-left {
+   background-color: @gray;
+   padding-left: 0;
+   padding-right: 0;
+}
+.stats-selection {
+  div{
+        margin: 5px;
+        padding: 5px 10px;
+        .left;       
+  }
+}
+
+.stats-caption {
+        background-color: @red;
+        color: @white;
+        .center;
+      }  
+      
+.stats-result {
+  .simple-border;
+  h3 {
+    margin: 10px;
+  }
+}          
+/* ---/Page Stats--- */

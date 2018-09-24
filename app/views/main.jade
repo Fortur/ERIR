@@ -1,0 +1,156 @@
+doctype html
+html(lang='en')
+  //подключение header
+  include includes/head 
+  body
+    .wrapper
+      .navigation
+        nav.navbar.navbar-default.navbar-fixed-top 
+          .container
+            .navbar-header
+              button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+                span.sr-only Toggle navigation
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+
+              a.navbar-brand(href='http://da-strateg.ru', target='_blank')
+                img(src='/img/da-strateg-logo.png', alt='logo1')
+            // Collect the nav links, forms, and other content for toggling
+
+            #bs-example-navbar-collapse-1.collapse.navbar-collapse
+              ul.nav.navbar-nav.pull-right
+                li.active
+                  a(href='/main') Главная
+                li
+                  a(href='/search') Поиск
+                li
+                  a(href='/stats') Интерактивная статистика
+                li
+                    a(href='/register-company') Регистрация компании
+                li
+                  a(href='/register-report') Регистрация отчета
+            // /.navbar-collapse
+          // /.container-fluid
+      // /container navigation
+
+      .space-for-fixed-top
+
+      .jumbotron
+        .jumbo-with-page
+          center
+            .caption
+              | Национальный реестр
+              br
+              | интегрированных отчетов  
+            button.btn.btn-default.btn-lg.red-btn(type='button', title='Перейти на страницу поиска')
+              a(href='/search', title='Перейти на страницу поиска')
+                span.glyphicon.glyphicon-search
+                span.uppercase  Поиск отчетов
+
+
+      .container.mainpage
+        main.container
+          .row
+            #slick-slider 
+                .autoplay
+                     - var i = 0;
+                     - for (i = 0; i<25; i++)
+                      if(new_reports[i])
+                          a(href='/report/#{new_reports[i]._id}', target='_blank', title='#{new_reports[i].name}')
+                            img(src='#{new_reports[i].preview}', alt='')     
+
+
+          .space.col-md-12.col-xs-12.col-sm-12
+          .row.description-and-news
+            .col-md-7.col-xs-12.col-sm-12.mainpage-description
+              span.cap-bg
+                | О проекте
+              //- div(style='padding:1%;background:#EEE;border-radius:10px 10px 10px 10px')
+              //-   span(style='font-size:9pt;text-align:left')
+              //-     | Интегрированный отчет это отчет, подготовленный в соответствии с Международным стандартом интегрированной отчетности. Он содержит краткую информацию о том, как стратегия, управление, результаты деятельности и перспективы организации в контексте внешней̆ среды ведут к созданию 
+              //-     | стоимости на протяжении кратко-, средне- и долгосрочного периода. При подготовке отчета могут использоваться и другие международные стандарты (Руководство GRI, АА1000SES и пр.).
+              br
+              p
+                | &nbsp&nbsp&nbsp&nbsp&nbspНациональный реестр интегрированных отчетов является базой данных и содержит все интегрированные отчеты российских компаний, выпущенные с 2009 года, когда в России появились первые интегрированные отчеты.
+                br
+                | &nbsp&nbsp&nbsp&nbsp&nbspФункциональные возможности реестра предназначены российским компаниям, а также консультантам в области корпоративной отчетности, аналитикам, инвесторам и другим заинтересованным сторонам. 
+                br
+                | &nbsp&nbsp&nbsp&nbsp&nbspВ реестре есть возможности поиска интегрированных отчетов по различным фильтрам и составления интерактивной статистики. Пользователи также имеют возможность самостоятельно загружать данные об отчетах и компаниях. 
+                br
+                | &nbsp&nbsp&nbsp&nbsp&nbspВ Национальном реестре зарегистрировано 100 отчетов 22 компаний.
+              .space  
+
+              .definition                
+                span   
+                  img(src='img/graph-icon.png', alt='graph-icon') 
+                  | Интегрированный отчет это отчет, подготовленный в соответствии с Международным стандартом интегрированной отчетности. Он содержит краткую информацию о том, как стратегия, 
+                  | управление, результаты деятельности и перспективы организации в контексте внешней среды ведут к созданию 
+                  | стоимости на протяжении кратко-, средне- и долгосрочного периода. При подготовке отчета могут использоваться и другие международные стандарты (Руководство GRI, АА1000SES и пр.).
+
+            .col-md-4.col-xs-12.col-sm-12.mainpage-news
+              .news-caption.uppercase
+                | Новости
+              .news
+                for nw in news
+                  .new
+                    a(href='#{nw.link}', target='_blank', title='')
+                      h3 #{nw.header}
+                    //- var test = nw.date.toLocaleString("ru", {day: 'numeric'}) + '-' + nw.date.toLocaleString("ru", {month: 'numeric'}) + '-' + nw.date.toLocaleString("ru", {year: 'numeric'});
+                    //p #{test}
+
+                    //- h3 #{nw.header}
+                    //- - var test = nw.date.toLocaleString("ru", {day: 'numeric'}) + '-' + nw.date.toLocaleString("ru", {month: 'numeric'}) + '-' + nw.date.toLocaleString("ru", {year: 'numeric'});
+                    //- p #{test}
+                    //- a.underline(href='#{nw.link}', target='_blank', title='') Читать далее >>> 
+                    //- hr
+            // /.mainpage-news
+          // / row stat & news
+          //- .row.best
+          .space.col-md-12.col-xs-12.col-sm-12
+          .row.best
+            .col-md-7.col-xs-12.col-sm-12
+              span.cap-bg
+                | Лучшие практики
+              br  
+              .col-md-6.col-xs-6.col-sm-6
+                .items 
+                  .item
+                    img(src='img/1.jpg', alt='')
+                    a(href='/search/Лучшее раскрытие стратегии') Стратегия
+                  .item
+                    img(src='img/2.jpg', alt='')
+                    a(href='/search/Лучшее раскрытие бизнес-модели') Бизнес-модель                  
+                  .item
+                    img(src='img/3.jpg', alt='')
+                    a(href='/search/Лучшее раскрытие информации о рисках') Риски              
+
+              .col-md-6.col-xs-6.col-sm-6
+                .items 
+                  .item
+                    img(src='img/4.jpg', alt='', )
+                    a(href='/search/Лучшее раскрытие информации о системе публичной отчетности') Система публичной отчетности
+                  .item
+                    img(src='img/5.jpg', alt='')
+                    a(href='/search/Лучшее раскрытие информации о корпоративном управлении') Корпоративное управление          
+                  .item
+                    img(src='img/6.jpg', alt='')
+                    a(href='/search/Лучшее раскрытие информации о деятельности в области устойчивого развития') Устойчивое развитие
+
+            .col-md-4.col-xs-12.col-sm-12.partners
+              .logo
+                a(href='http://ir.org.ru/', target='_blank', title='Перейти на сайт компании')
+                  img(src=' img/rrc-logo.png', alt='logo2')
+              .info
+                p
+                  | Национальный реестр подготовлен 
+                  | Группой компаний «Да-Стратегия» 
+                  | при поддержке Российской Региональной Сети 
+                  | по интегрированной отчетности
+
+
+          // /.partners
+      // /mainpage
+
+      //подключение footer
+      include includes/footer
