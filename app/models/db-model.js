@@ -1,23 +1,23 @@
-//var url = 'mongodb://80.93.177.208:27017/ERIO';
-var login = require('../config').dbLogin;
-var pass = require('../config').dbPass;
-var adress = require('../config').dbIp;
-var url = 'mongodb://'+login+':'+pass+'@'+adress;
-var mongoose = require('mongoose');
+//let url = 'mongodb://80.93.177.208:27017/ERIO';
+let login = require('../config').dbLogin;
+let pass = require('../config').dbPass;
+let adress = require('../config').dbIp;
+let url = 'mongodb://'+login+':'+pass+'@'+adress;
+let mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-var db = mongoose.connect(url, { server: { reconnectTries: Number.MAX_VALUE } })//конектимсся к БД
-var multer = require('multer');
-var upload = multer({dest: '../src/buffer'});
-var conn = mongoose.connection;
-var fs = require('fs');
-var Grid = require('gridfs-stream');
+let db = mongoose.connect(url, { reconnectTries: Number.MAX_VALUE}); //конектимсся к БД
+let multer = require('multer');
+let upload = multer({dest: '../src/buffer'});
+let conn = mongoose.connection;
+let fs = require('fs');
+let Grid = require('gridfs-stream');
 Grid.mongo = mongoose.mongo;
-var gfs = Grid(conn.db);
+let gfs = Grid(conn.db);
 
 
 module.exports.multer = multer;
 module.exports.db = db;
 module.exports.upload = upload;
 module.exports.fs = fs;
-module.exports.gfs = gfs; 
+module.exports.gfs = gfs;
 module.exports.url = url;

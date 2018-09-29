@@ -1,17 +1,17 @@
-import masterController from "./app/controllers/master";
+let masterController = require('./app/controllers/master');
 
 let express = require('express'),
-    app = express.Router(),
-    multer = require('multer'),
-    storage = multer.diskStorage({
-        destination: function (req, file, cb) {
-            cb(null, './src/buffer')
-        },
-        filename: function (req, file, cb) {
-            cb(null, Date.now() + '-' + file.originalname)
-        }
-    }),
-    upload = multer({storage: storage});
+  app = express.Router(),
+  multer = require('multer'),
+  storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, './src/buffer')
+    },
+    filename: function (req, file, cb) {
+      cb(null, Date.now() + '-' + file.originalname)
+    }
+  }),
+  upload = multer({storage: storage});
 
 app.get('/', masterController.main);
 app.get('/main', masterController.main);
@@ -43,7 +43,7 @@ app.get('/search/:best', masterController.search.report);
 app.get('/v1/search/company/:amount/:page/:sort/:sector/:size_of_company/:city/:search', masterController.API.search.company);
 app.get('/v1/stats/:sector/:standart/:size_of_company/:type_of_ownership', masterController.API.stats);
 app.get('/v1/search/report/:amount/:page/:sort/:sector/:size_of_company/:city/:year/:opf/:type_of_ownership/:standarts/:best/:search',
-    masterController.API.search.report);
+  masterController.API.search.report);
 app.get('/v1/static/:name', masterController.API.static);
 
 module.exports = app;
