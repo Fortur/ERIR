@@ -79,17 +79,17 @@ exports.searchReportPageREST = function (req, res) {
   }
 
 
-  if (size_of_company != 'Размер компании')
+  if (size_of_company !== 'Размер компании')
     query.where('size_of_company', size_of_company);
-  if (sector != 'Отрасль экономики')
+  if (sector !== 'Отрасль экономики')
     query.where('sector', sector);
-  if (city != 'Местонахождение штаб-квартиры')
+  if (city !== 'Местонахождение штаб-квартиры')
     query.where('city', city);
-  if (year != 'Отчетный год')
+  if (year !== 'Отчетный год')
     query.where('year', year);
-  if (opf != 'Организационно-правовая форма')
+  if (opf !== 'Организационно-правовая форма')
     query.where('opf', opf);
-  if (type_of_ownership != 'Форма собственности')
+  if (type_of_ownership !== 'Форма собственности')
     query.where('type_of_ownership', type_of_ownership);
 
 
