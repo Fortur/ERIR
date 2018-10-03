@@ -39,7 +39,7 @@ exports.searchReportPageREST = function (req, res) {
   let search = req.params.search;
   let page = req.params.page;
   let amount = req.params.amount;
-  let query = query = Report.find({accept: '1'});
+  let query = Report.find({accept: '1'});
 
   if (search != 'null')
     query.where({name: {$regex: search, $options: 'i'}});
